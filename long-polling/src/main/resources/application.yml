@@ -1,3 +1,12 @@
 spring:
   application:
     name: long-polling
+  task:
+    execution:
+      pool:
+        core-size: 8
+        max-size: 200
+        queue-capacity: 1000
+    scheduling:
+      pool:
+        size: 5

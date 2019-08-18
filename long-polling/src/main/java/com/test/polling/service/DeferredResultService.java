@@ -15,14 +15,16 @@ public class DeferredResultService {
     private Map<String, Consumer<DeferredResultResponse>> taskMap = new ConcurrentHashMap<>();
 
     public void process(String id, DeferredResult<DeferredResultResponse> deferredResult) {
-        deferredResult.onTimeout(() -> {
-            taskMap.remove(id);
-            DeferredResultResponse deferredResultResponse = new DeferredResultResponse();
-            DeferredResultResponse.Msg timeout = DeferredResultResponse.Msg.TIMEOUT;
-            deferredResultResponse.setCode(timeout.getCode());
-            deferredResultResponse.setMsg(timeout.getDesc());
-            deferredResult.setResult(deferredResultResponse);
-        });
+        // 超时处理，或者使用 @ControllerAdvice 全局处理 AsyncRequestTimeoutException异常
+//        deferredResult.onTimeout(() -> {
+//            taskMap.remove(id);
+//            DeferredResultResponse deferredResultResponse = new DeferredResultResponse();
+//            DeferredResultResponse.Msg timeout = DeferredResultResponse.Msg.TIMEOUT;
+//            deferredResultResponse.setCode(timeout.getCode());
+//            deferredResultResponse.setMsg(timeout.getDesc());
+//            deferredResult.setResult(deferredResultResponse);
+//        });
+
         Optional.ofNullable(taskMap)
                 .filter(t -> !t.containsKey(id))
                 .orElseThrow(() -> new IllegalArgumentException(String.format("id=%s is existing", id)));

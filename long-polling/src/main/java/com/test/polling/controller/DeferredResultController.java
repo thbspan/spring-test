@@ -22,7 +22,7 @@ public class DeferredResultController {
 
     @GetMapping("/get")
     public DeferredResult get(String id) {
-        DeferredResult deferredResult = new DeferredResult(DEFAULT_TIME_OUT);
+        DeferredResult<DeferredResultResponse> deferredResult = new DeferredResult<>(DEFAULT_TIME_OUT);
         deferredResultService.process(id, deferredResult);
         return deferredResult;
     }
