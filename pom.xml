@@ -5,6 +5,7 @@
     <modules>
         <module>long-polling</module>
         <module>servlet3</module>
+        <module>nacos-spring-boot-example</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
