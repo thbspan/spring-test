@@ -21,7 +21,7 @@ public class DeferredResultController {
     private DeferredResultService deferredResultService;
 
     @GetMapping("/get")
-    public DeferredResult get(String id) {
+    public DeferredResult<DeferredResultResponse> get(String id) {
         DeferredResult<DeferredResultResponse> deferredResult = new DeferredResult<>(DEFAULT_TIME_OUT);
         deferredResultService.process(id, deferredResult);
         return deferredResult;
