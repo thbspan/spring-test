@@ -8,6 +8,7 @@
         <module>nacos-spring-boot-example</module>
         <module>spring-webmvc</module>
         <module>spring-jdbc</module>
+        <module>configuration-properties</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

@@ -1,0 +1,5 @@
+mail:
+  host-name: host
+  port: 25
+  from: xxx@163.com
+  to: yyy@163.com

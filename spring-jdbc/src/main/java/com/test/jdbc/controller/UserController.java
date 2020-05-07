@@ -16,7 +16,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public String index() {
         return "user index";
     }
