@@ -3,3 +3,18 @@ mail:
   port: 25
   from: xxx@163.com
   to: yyy@163.com
+
+person:
+  name: test
+  age: 10
+  address:
+    - a
+    - b
+    - c
+  phone:
+    type: A
+    number: 1367589526
+app:
+  connect-timeout: 1s
+  upload-dir: tmp
+  read-timeout: 30000ms
