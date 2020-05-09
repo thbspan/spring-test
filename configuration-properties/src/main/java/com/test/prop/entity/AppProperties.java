@@ -16,6 +16,7 @@ public class AppProperties {
     @DurationUnit(ChronoUnit.SECONDS)
     private Duration readTimeout = Duration.ofSeconds(30);
 
+    private Authorization auth;
     public String getUploadDir() {
         return uploadDir;
     }
@@ -38,5 +39,13 @@ public class AppProperties {
 
     public void setReadTimeout(Duration readTimeout) {
         this.readTimeout = readTimeout;
+    }
+
+    public Authorization getAuth() {
+        return auth;
+    }
+
+    public void setAuth(Authorization auth) {
+        this.auth = auth;
     }
 }

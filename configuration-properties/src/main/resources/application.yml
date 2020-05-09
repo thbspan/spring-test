@@ -18,3 +18,4 @@ app:
   connect-timeout: 1s
   upload-dir: tmp
   read-timeout: 30000ms
+  auth: ab34e,78cef

@@ -25,5 +25,6 @@ public class ConfigurationPropertiesApplicationTests {
 
         System.out.println(person.getPhone().getNumber());
         System.out.println(appProperties.getConnectTimeout());
+        System.out.println(appProperties.getAuth());
     }
 }
