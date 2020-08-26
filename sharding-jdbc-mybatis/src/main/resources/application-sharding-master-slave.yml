@@ -1,0 +1,73 @@
+spring:
+  shardingsphere:
+    datasource:
+      names: dsmaster0,dsmaster1,dsmaster0slave0,dsmaster0slave1,dsmaster1slave0,dsmaster1slave1
+      dsmaster0:
+        jdbc-url: jdbc:mysql://localhost:3306/demo_ds_master_0?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        type: com.zaxxer.hikari.HikariDataSource
+        username: root
+        password: 123456
+      dsmaster0slave0:
+        jdbc-url: jdbc:mysql://localhost:3306/demo_ds_master_0_slave_0?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        type: com.zaxxer.hikari.HikariDataSource
+        username: root
+        password: 123456
+      dsmaster0slave1:
+        jdbc-url: jdbc:mysql://localhost:3306/demo_ds_master_0_slave_1?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        type: com.zaxxer.hikari.HikariDataSource
+        username: root
+        password: 123456
+      dsmaster1:
+        jdbc-url: jdbc:mysql://localhost:3306/demo_ds_master_1?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        type: com.zaxxer.hikari.HikariDataSource
+        username: root
+        password: 123456
+      dsmaster1slave0:
+        jdbc-url: jdbc:mysql://localhost:3306/demo_ds_master_1_slave_0?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        type: com.zaxxer.hikari.HikariDataSource
+        username: root
+        password: 123456
+      dsmaster1slave1:
+        jdbc-url: jdbc:mysql://localhost:3306/demo_ds_master_1_slave_1?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        type: com.zaxxer.hikari.HikariDataSource
+        username: root
+        password: 123456
+    sharding:
+      default-database-strategy:
+        inline:
+          sharding-column: user_id
+          algorithm-expression: ds$->{user_id % 2}
+      binding-tables: t_order,t_order_item
+      broadcast-tables: t_address
+      tables:
+        t_order:
+          actual-data-nodes: ds$->{0..1}.t_order_$->{0..1}
+          table-strategy:
+            inline:
+              sharding-column: order_id
+              algorithm-expression: t_order_$->{order_id % 2}
+          key-generator:
+            column: order_id
+            type: SNOWFLAKE
+            props:
+              worker:
+                id: 123
+        t_order_item:
+          actual-data-nodes: ds$->{0..1}.t_order_item_$->{0..1}
+          table-strategy:
+            inline:
+              sharding-column: order_id
+              algorithm-expression: t_order_item_$->{order_id % 2}
+          key-generator:
+            column: order_item_id
+            type: SNOWFLAKE
+            props:
+              worker:
+                id: 123
+      master-slave-rules:
+        ds0:
+          master-data-source-name: dsmaster0
+          slave-data-source-names: dsmaster0slave0, dsmaster0slave1
+        ds1:
+          master-data-source-name: dsmaster1
+          slave-data-source-names: dsmaster1slave0, dsmaster1slave1

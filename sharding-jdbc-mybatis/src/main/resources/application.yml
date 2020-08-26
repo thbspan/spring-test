@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: sharding-databases
+  application:
+    name: sharding-jdbc-mybatis
+mybatis:
+  config-location: classpath:META-INF/mybatis-config.xml
+  mapper-locations: classpath:META-INF/mapper/*Mapper.xml
