@@ -22,14 +22,15 @@ public class UserRepository {
     private DataSource dataSource;
 
     public boolean save(User user) {
-        return txJdbcInsert(user);
+        return jdbcInsert(user);
     }
 
     private JdbcTemplate jdbcTemplate;
 
     private PlatformTransactionManager platformTransactionManager;
 
-    private boolean txJdbcInsert(User user) {
+    @SuppressWarnings("unused")
+	private boolean txJdbcInsert(User user) {
         DefaultTransactionDefinition transactionDefinition = new DefaultTransactionDefinition();
         TransactionStatus transaction = platformTransactionManager.getTransaction(transactionDefinition);
         jdbcTemplate.execute("INSERT INTO user(name) VALUES (?)", (PreparedStatement ps) -> {
@@ -56,7 +57,8 @@ public class UserRepository {
         return false;
     }
 
-    private boolean jdbcTemplateInsert(User user) {
+    @SuppressWarnings("unused")
+	private boolean jdbcTemplateInsert(User user) {
         return false;
     }
 
