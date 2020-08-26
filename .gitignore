@@ -4,3 +4,8 @@
 *.iml
 *.iws
 target/
+
+# eclipse ignore
+.project
+.classpath
+.settings/
