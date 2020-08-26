@@ -12,8 +12,9 @@ import com.test.service.LongRunningProcess;
 
 @WebServlet("/sync/hello")
 public class SyncHelloServlet extends HttpServlet {
+	private static final long serialVersionUID = -8330910318566231969L;
 
-    @Override
+	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         new LongRunningProcess().run();
         response.getWriter().write("Hello");

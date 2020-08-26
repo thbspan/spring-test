@@ -17,8 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 //@WebServlet("/path") // URL /path
 @WebServlet("/path/") // URL /path/
 public class PathMatchServlet extends HttpServlet {
+	private static final long serialVersionUID = -6203805520008631658L;
 
-    @Override
+	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html; charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);

@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(value = "/500", asyncSupported = true)
 public class InternalErrorServlet extends HttpServlet {
-    @Override
+	private static final long serialVersionUID = -8770296445395173253L;
+
+	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html; charset=utf-8");
         resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
