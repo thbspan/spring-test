@@ -3,32 +3,32 @@ spring:
     datasource:
       names: dsmaster0,dsmaster1,dsmaster0slave0,dsmaster0slave1,dsmaster1slave0,dsmaster1slave1
       dsmaster0:
-        jdbc-url: jdbc:mysql://localhost:3306/demo_ds_master_0?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        jdbc-url: jdbc:mysql://localhost:3306/demo_ds_master_0?serverTimezone=Asia/Shanghai&useSSL=false&useUnicode=true&characterEncoding=UTF-8
         type: com.zaxxer.hikari.HikariDataSource
         username: root
         password: 123456
       dsmaster0slave0:
-        jdbc-url: jdbc:mysql://localhost:3306/demo_ds_master_0_slave_0?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        jdbc-url: jdbc:mysql://localhost:3306/demo_ds_master_0_slave_0?serverTimezone=Asia/Shanghai&useSSL=false&useUnicode=true&characterEncoding=UTF-8
         type: com.zaxxer.hikari.HikariDataSource
         username: root
         password: 123456
       dsmaster0slave1:
-        jdbc-url: jdbc:mysql://localhost:3306/demo_ds_master_0_slave_1?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        jdbc-url: jdbc:mysql://localhost:3306/demo_ds_master_0_slave_1?serverTimezone=Asia/Shanghai&useSSL=false&useUnicode=true&characterEncoding=UTF-8
         type: com.zaxxer.hikari.HikariDataSource
         username: root
         password: 123456
       dsmaster1:
-        jdbc-url: jdbc:mysql://localhost:3306/demo_ds_master_1?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        jdbc-url: jdbc:mysql://localhost:3306/demo_ds_master_1?serverTimezone=Asia/Shanghai&useSSL=false&useUnicode=true&characterEncoding=UTF-8
         type: com.zaxxer.hikari.HikariDataSource
         username: root
         password: 123456
       dsmaster1slave0:
-        jdbc-url: jdbc:mysql://localhost:3306/demo_ds_master_1_slave_0?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        jdbc-url: jdbc:mysql://localhost:3306/demo_ds_master_1_slave_0?serverTimezone=Asia/Shanghai&useSSL=false&useUnicode=true&characterEncoding=UTF-8
         type: com.zaxxer.hikari.HikariDataSource
         username: root
         password: 123456
       dsmaster1slave1:
-        jdbc-url: jdbc:mysql://localhost:3306/demo_ds_master_1_slave_1?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        jdbc-url: jdbc:mysql://localhost:3306/demo_ds_master_1_slave_1?serverTimezone=Asia/Shanghai&useSSL=false&useUnicode=true&characterEncoding=UTF-8
         type: com.zaxxer.hikari.HikariDataSource
         username: root
         password: 123456
