@@ -10,6 +10,7 @@
         <module>spring-jdbc</module>
         <module>configuration-properties</module>
         <module>sharding-jdbc-mybatis</module>
+        <module>grpc-example</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -30,20 +31,6 @@
         <mysql.version>5.1.49</mysql.version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter</artifactId>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-starter-logging</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
