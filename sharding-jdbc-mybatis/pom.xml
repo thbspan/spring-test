@@ -13,8 +13,6 @@
 
     <properties>
         <mybatis.starter.version>2.1.3</mybatis.starter.version>
-        <!--覆盖mysql版本-->
-        <mysql.version>5.1.49</mysql.version>
         <sharding.jdbc.version>4.1.1</sharding.jdbc.version>
     </properties>
 
