@@ -1,6 +1,5 @@
 package com.test.grpc.example.user.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,11 +12,13 @@ import com.test.grpc.example.user.api.UserGetRequest;
 import com.test.grpc.example.user.api.UserGetResponse;
 import com.test.grpc.example.user.api.UserServiceGrpc;
 
+import net.devh.boot.grpc.client.inject.GrpcClient;
+
 @RestController
 @RequestMapping("/demo")
 public class DemoController {
 
-    @Autowired
+    @GrpcClient("userService")
     private UserServiceGrpc.UserServiceBlockingStub userServiceGrpc;
 
     @GetMapping("/get")

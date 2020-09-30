@@ -1,3 +1,7 @@
 spring:
   application:
     name: grpc-example-user-service-provider
+grpc:
+  # gRPC 服务器配置，对应 GrpcServerProperties 配置类
+  server:
+    port: 8888

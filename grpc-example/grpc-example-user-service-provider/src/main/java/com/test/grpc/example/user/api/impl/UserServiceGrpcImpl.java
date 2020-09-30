@@ -1,7 +1,5 @@
 package com.test.grpc.example.user.api.impl;
 
-import org.springframework.stereotype.Service;
-
 import com.test.grpc.example.user.api.UserCreateRequest;
 import com.test.grpc.example.user.api.UserCreateResponse;
 import com.test.grpc.example.user.api.UserGetRequest;
@@ -9,8 +7,9 @@ import com.test.grpc.example.user.api.UserGetResponse;
 import com.test.grpc.example.user.api.UserServiceGrpc;
 
 import io.grpc.stub.StreamObserver;
+import net.devh.boot.grpc.server.service.GrpcService;
 
-@Service
+@GrpcService
 public class UserServiceGrpcImpl extends UserServiceGrpc.UserServiceImplBase {
     @Override
     public void get(UserGetRequest request, StreamObserver<UserGetResponse> responseObserver) {
