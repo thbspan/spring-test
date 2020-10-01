@@ -1,9 +1,11 @@
 spring:
   application:
     name: grpc-example-user-service-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
 grpc:
   client:
-    userService:
-      # 用户服务的地址
-      address: 'static://127.0.0.1:8888'
+    grpc-example-user-service-provider:
       negotiation-type: plaintext

@@ -17,7 +17,6 @@
             <groupId>io.grpc</groupId>
             <artifactId>grpc-protobuf</artifactId>
         </dependency>
-
         <!-- stub 客户端库 -->
         <dependency>
             <groupId>io.grpc</groupId>

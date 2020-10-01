@@ -18,7 +18,7 @@ import net.devh.boot.grpc.client.inject.GrpcClient;
 @RequestMapping("/demo")
 public class DemoController {
 
-    @GrpcClient("userService")
+    @GrpcClient("grpc-example-user-service-provider")
     private UserServiceGrpc.UserServiceBlockingStub userServiceGrpc;
 
     @GetMapping("/get")
