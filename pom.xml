@@ -12,6 +12,7 @@
         <module>sharding-jdbc-mybatis</module>
         <module>grpc-example</module>
         <module>apollo-example</module>
+        <module>spring-xml</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
