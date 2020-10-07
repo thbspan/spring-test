@@ -13,6 +13,7 @@
         <module>grpc-example</module>
         <module>apollo-example</module>
         <module>spring-xml</module>
+        <module>spring-annotation</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
