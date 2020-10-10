@@ -11,6 +11,7 @@
         <module>configuration-properties</module>
         <module>sharding-jdbc-mybatis</module>
         <module>grpc-example</module>
+        <module>zkclient</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
