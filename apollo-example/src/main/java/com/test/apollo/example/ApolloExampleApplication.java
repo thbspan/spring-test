@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @SpringBootApplication
 public class ApolloExampleApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ApolloExampleApplication.class);
+        SpringApplication.run(ApolloExampleApplication.class, args);
     }
 }
 

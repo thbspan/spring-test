@@ -10,6 +10,6 @@ import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
 public class NacosConfigApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(NacosConfigApplication.class);
+        SpringApplication.run(NacosConfigApplication.class, args);
     }
 }
