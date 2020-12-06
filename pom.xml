@@ -15,6 +15,7 @@
         <module>spring-xml</module>
         <module>spring-annotation</module>
         <module>zkclient</module>
+        <module>spring-security</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
