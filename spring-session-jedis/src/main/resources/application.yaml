@@ -1,6 +1,7 @@
 spring:
   session:
     store-type: redis
+    timeout: 5m
     redis:
       namespace: ss
   redis:
