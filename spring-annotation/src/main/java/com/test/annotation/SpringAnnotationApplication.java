@@ -28,7 +28,7 @@ public class SpringAnnotationApplication {
 
     @Bean
     public String jack() {
-        return "x";
+        return t1() + "x";
     }
 
     static class T1 {
