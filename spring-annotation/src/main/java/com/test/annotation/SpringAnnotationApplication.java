@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import com.test.annotation.config.TestImport;
+import com.test.annotation.loopup.ClassA;
 import com.test.annotation.service.WorkerService;
 
 @Import(TestImport.class)
@@ -19,6 +20,9 @@ public class SpringAnnotationApplication {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringAnnotationApplication.class);
         WorkerService workerService = applicationContext.getBean(WorkerService.class);
         workerService.work();
+        ClassA classA = applicationContext.getBean(ClassA.class);
+        classA.printClass();
+        classA.printClass();
     }
 
     @Bean
@@ -31,7 +35,7 @@ public class SpringAnnotationApplication {
         return t1() + "x";
     }
 
-    static class T1 {
+    public static class T1 {
 
     }
 
