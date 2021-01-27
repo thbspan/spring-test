@@ -17,6 +17,7 @@
         <module>zkclient</module>
         <module>spring-security</module>
         <module>spring-session-jedis</module>
+        <module>rsocket-example</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
