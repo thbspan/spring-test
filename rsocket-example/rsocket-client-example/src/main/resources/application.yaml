@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: rsocket-client-example
+  mvc:
+    servlet:
+      path: /
+server:
+  servlet:
+    encoding:
+      force: true
+      enabled: true
+      charset: UTF-8
+    context-path: /
+    application-display-name: ${spring.application.name}
+  port: 9999
