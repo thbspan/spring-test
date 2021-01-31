@@ -18,6 +18,7 @@
         <module>spring-security</module>
         <module>spring-session-jedis</module>
         <module>rsocket-example</module>
+        <module>spring-webflux</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
