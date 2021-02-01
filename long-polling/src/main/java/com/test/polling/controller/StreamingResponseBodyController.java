@@ -25,7 +25,6 @@ public class StreamingResponseBodyController {
             try {
                 outputStream.write(Files.readAllBytes(Paths.get(StreamingResponseBodyController.class.getResource("/application.yml").toURI())));
             } catch (Exception e) {
-                e.printStackTrace();
                 LOGGER.error("test streaming exception.", e);
             }
         };
