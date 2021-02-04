@@ -11,8 +11,11 @@ public class IndexController {
     @Value("${server.port}")
     private String serverPort;
 
+    @Value("${server.port}")
+    private String port;
+
     @RequestMapping("getServerInfo")
     public String getServerInfo() {
-        return "serverPort:" + serverPort + (ElectionMaster.IS_MASTER ? "选举为主" : "选举为从");
+        return "serverPort:" + serverPort + " " + port + " " + (ElectionMaster.IS_MASTER ? "选举为主" : "选举为从");
     }
 }
