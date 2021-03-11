@@ -29,7 +29,7 @@ public class UserController {
         return userService.selectById(id);
     }
 
-    @PostMapping("")
+    @PostMapping
     public Integer add(UserVO user) {
         userService.addUser(user);
         return user.getId();

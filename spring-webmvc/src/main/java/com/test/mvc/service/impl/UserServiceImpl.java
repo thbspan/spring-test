@@ -16,7 +16,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserVO selectById(int id) {
-        return null;
+        UserVO userVO = new UserVO();
+        userVO.setId(id);
+        userVO.setUserName("random " + id);
+        return userVO;
     }
 
     @Override

@@ -20,12 +20,14 @@
         <module>rsocket-example</module>
         <module>rsocket-rpc-example</module>
         <module>spring-webflux</module>
+        <module>hystrix-example</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.2</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>2.4.3</version>
+        <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
     <groupId>com.test</groupId>
     <artifactId>spring-test</artifactId>
