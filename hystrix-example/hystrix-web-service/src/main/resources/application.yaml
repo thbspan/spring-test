@@ -1,6 +1,6 @@
 spring:
   application:
-    name: hystrix-example
+    name: hystrix-web-service
 server:
   port: 18080
 management:
@@ -13,3 +13,7 @@ management:
           - info
       # Actuator 提供的 API 接口的根目录。默认为 /actuator
       base-path: /actuator
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

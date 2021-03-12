@@ -2,4 +2,16 @@ server:
   port: 19090
 hystrix:
   dashboard:
-    proxy-stream-allow-list: '*'
+    proxy-stream-allow-list: "*"
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+turbine:
+  # Turbine 聚合的服务名；如果有多个，使用逗号分隔
+  app-config: hystrix-web-service
+  # 服务是否以 host + port 进行区分，默认为 true。如果设置为 false，则只以 host 进行区分
+  combine-host-port: true
+  # 指定集群名，设置为 `default` 表示默认集群
+  cluster-name-expression:  new String('default')
+  instanceUrlSuffix: hystrix.stream
