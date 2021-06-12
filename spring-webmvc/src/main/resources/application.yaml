@@ -2,6 +2,12 @@ spring:
   mvc:
     throw-exception-if-no-handler-found: true
     static-path-pattern: /statics/**
+    hiddenmethod:
+      filter:
+        # 使浏览器支持除GET、POST以外的其他请求（请求参数中需要_method参数，参考HiddenHttpMethodFilter）
+        enabled: true
+    view:
+      prefix:
   web:
     resources:
       add-mappings: false
