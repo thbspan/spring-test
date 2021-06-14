@@ -68,4 +68,9 @@ public class UserController {
         LOGGER.info("test model attribute = {}", user);
         return user;
     }
+
+    @GetMapping("/testConversionService")
+    public Object testConversionService(@RequestParam("user") UserVO user) {
+        return user;
+    }
 }

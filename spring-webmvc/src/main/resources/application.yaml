@@ -7,7 +7,8 @@ spring:
         # 使浏览器支持除GET、POST以外的其他请求（请求参数中需要_method参数，参考HiddenHttpMethodFilter）
         enabled: true
     view:
-      prefix:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
   web:
     resources:
       add-mappings: false

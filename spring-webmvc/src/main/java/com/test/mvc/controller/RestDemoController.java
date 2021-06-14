@@ -19,7 +19,7 @@ public class RestDemoController {
     private static final Logger LOGGER = LoggerFactory.getLogger(RestDemoController.class);
 
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "/param")
     public Object index() {
         Map<String, Object> params = new HashMap<>();
         params.put("key", "hello");
