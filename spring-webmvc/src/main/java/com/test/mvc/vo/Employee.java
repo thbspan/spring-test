@@ -10,8 +10,10 @@ public class Employee {
     private String userName;
     // 性别 1 male，0 female
     private Integer gender;
+    // 日期格式，参考 DateTimeFormatAnnotationFormatterFactory
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birth;
+    // 数字格式，参考 NumberFormatAnnotationFormatterFactory
     @NumberFormat(pattern = "#,###,###.#")
     private Float salary;
 
