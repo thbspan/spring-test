@@ -21,6 +21,7 @@
         <module>rsocket-rpc-example</module>
         <module>spring-webflux</module>
         <module>hystrix-example</module>
+        <module>sentinel-example</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

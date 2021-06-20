@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: sentinel-example
+server:
+  port: 8888
