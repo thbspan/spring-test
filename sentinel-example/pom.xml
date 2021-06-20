@@ -55,5 +55,11 @@
             <artifactId>sentinel-annotation-aspectj</artifactId>
             <version>${sentinel.version}</version>
         </dependency>
+        <!-- Sentinel 对 Apollo 作为数据源的支持 -->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-apollo</artifactId>
+            <version>${sentinel.version}</version>
+        </dependency>
     </dependencies>
 </project>
