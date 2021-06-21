@@ -25,16 +25,13 @@ public class RSocketClient {
     public RSocketClient(RSocketRequester.Builder rSocketRequesterBuilder, RSocketStrategies strategies) {
         this.rSocketRequester = rSocketRequesterBuilder
                 .rsocketStrategies(strategies)
-                .tcp("localhost", 8888);
-        rSocketRequester.rsocketClient().source()
-                .doOnError(e -> LOGGER.error("发生错误", e))
-                .doFinally(__ -> LOGGER.info("连接关闭"))
-                .subscribe();
+                .connectTcp("localhost", 8888)
+                .block();
     }
 
     @PreDestroy
     void shutdown() {
-        rSocketRequester.rsocketClient().dispose();
+        rSocketRequester.rsocket().dispose();
     }
 
     @GetMapping("request-response2")
