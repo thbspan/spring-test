@@ -17,6 +17,6 @@
     </modules>
     <properties>
         <hystrix.version>1.5.18</hystrix.version>
-        <spring.cloud.version>Hoxton.SR10</spring.cloud.version>
+        <spring.cloud.version>Hoxton.SR11</spring.cloud.version>
     </properties>
 </project>

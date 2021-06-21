@@ -12,6 +12,7 @@ public class HystrixConfig {
 
     @Bean
     public HystrixCommandAspect hystrixCommandAspect() {
+        // 扫描 @HystrixCommand 等注解的切面
         return new HystrixCommandAspect();
     }
 

@@ -1,2 +1,5 @@
 server:
   port: 19090
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "*"

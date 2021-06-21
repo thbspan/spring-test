@@ -3,6 +3,7 @@ package com.test.hystrix.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +22,7 @@ public class DemoController {
 
     @CacheResult(cacheKeyMethod = "genGetUserCacheKey")
     @HystrixCommand(fallbackMethod = "getUserFallback")
-    @GetMapping("/getUser")
+    @GetMapping(value = "/getUser", produces = MediaType.APPLICATION_JSON_VALUE)
     public String getUser(int id) {
         logger.info("request spring-webmvc service. id={}", id);
         return restTemplate.getForEntity("http://127.0.0.1:8080/users/" + id, String.class).getBody();
