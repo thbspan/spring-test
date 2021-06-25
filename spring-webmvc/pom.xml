@@ -39,6 +39,7 @@
             <artifactId>jstl</artifactId>
         </dependency>
         <!-- jsp引擎依赖 -->
+        <!-- idea中运行时需要设置 Working directory %MODULE_WORKING_DIR% -->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>

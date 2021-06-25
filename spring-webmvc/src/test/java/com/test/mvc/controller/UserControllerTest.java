@@ -22,6 +22,13 @@ public class UserControllerTest extends SpringWebmvcApplicationTestBase {
     @InjectMocks
     private UserController userController;
 
+    /**
+     * mock 和 spy 区别：
+     * 1、对于未执行mock的方法，spy会调用真实的方法，而mock默认不执行，返回默认值null
+     * 2、使用方式不同 Mockito.when(restTemplate.postForObject(ArgumentMatchers.anyString(), ArgumentMatchers.any(), ...)
+     * spy对直接调用方法；spy对象的使用方式，要先执行do等方法 Mockito.doReturn(info).when(authorizationInfoService).findAuthorizationInfo(appid);
+     * mock对象也可以这样使用
+     */
     @Spy
     @Autowired
     private UserService userService;
@@ -29,7 +36,7 @@ public class UserControllerTest extends SpringWebmvcApplicationTestBase {
     @BeforeEach
     public void init() {
         // ！！初始化
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
 
         UserVO userA = new UserVO();
         userA.setId(1);

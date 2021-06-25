@@ -10,4 +10,9 @@ public class IndexController {
     public String index() {
         return "index";
     }
+
+    @GetMapping("/index")
+    public void testDefaultViewName() {
+        // test default view name
+    }
 }
