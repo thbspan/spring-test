@@ -17,4 +17,5 @@ public class SpringWebmvcConfiguration implements WebMvcConfigurer {
         // 所有路径都被拦截
         registration.addPathPatterns("/**");
     }
+
 }
