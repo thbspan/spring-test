@@ -22,6 +22,7 @@
         <module>spring-webflux</module>
         <module>hystrix-example</module>
         <module>sentinel-example</module>
+        <module>netty-example</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
