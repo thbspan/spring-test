@@ -6,9 +6,9 @@ import javax.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.test.netty.server.NettyServerProperties;
 import com.test.netty.server.server.handler.NettyServerHandlerInitializer;
 
 import io.netty.bootstrap.ServerBootstrap;
@@ -23,8 +23,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 public class NettyServer {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Value("${netty.port}")
-    private int port;
+    private final NettyServerProperties serverProperties;
 
     @Autowired
     private NettyServerHandlerInitializer nettyServerHandlerInitializer;
@@ -44,12 +43,16 @@ public class NettyServer {
      */
     private Channel channel;
 
+    public NettyServer(NettyServerProperties serverProperties) {
+        this.serverProperties = serverProperties;
+    }
+
     @PostConstruct
     public void start() throws InterruptedException {
         ServerBootstrap bootstrap = new ServerBootstrap();
         bootstrap.group(bossGroup, workerGroup)
                 .channel(NioServerSocketChannel.class)
-                .localAddress(port)
+                .localAddress(serverProperties.getPort())
                 // 服务端 accept 队列的大小
                 .option(ChannelOption.SO_BACKLOG, 1024)
                 // TCP Keepalive 机制，实现 TCP 层级的心跳保活功能
@@ -61,7 +64,7 @@ public class NettyServer {
         ChannelFuture channelFuture = bootstrap.bind().sync();
         if (channelFuture.isSuccess()) {
             channel = channelFuture.channel();
-            logger.info("netty server was started on port {}", port);
+            logger.info("netty server was started on port {}", serverProperties.getPort());
         }
     }
 

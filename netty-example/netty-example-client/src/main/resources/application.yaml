@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: netty-example-client
+netty:
+  client:
+    server-host: localhost
+    server-port: 9527

@@ -1,0 +1,36 @@
+### content is empty
+POST http://localhost:8080/demo/mock
+Content-Type: application/json
+
+{
+  "type": "AUTH_REQUEST",
+  "message": "{}"
+}
+
+### content param is correct
+### userA
+POST http://localhost:8080/demo/mock
+Content-Type: application/json
+
+{
+  "type": "AUTH_REQUEST",
+  "message": "{\"accessToken\":\"userA\"}"
+}
+
+### userB
+POST http://localhost:8081/demo/mock
+Content-Type: application/json
+
+{
+  "type": "AUTH_REQUEST",
+  "message": "{\"accessToken\":\"userB\"}"
+}
+
+### userA -> userB
+POST http://localhost:8080/demo/mock
+Content-Type: application/json
+
+{
+  "type": "CHAT_SEND_TO_ONE_REQUEST",
+  "message": "{\"toUser\":\"userB\",\"msgId\":1,\"content\":\"hi~\"}"
+}

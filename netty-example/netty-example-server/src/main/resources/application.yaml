@@ -2,4 +2,5 @@ spring:
   application:
     name: netty-example-server
 netty:
-  port: 9527
+  server:
+    port: 9527

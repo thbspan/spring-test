@@ -14,5 +14,13 @@
     <modules>
         <module>netty-example-server</module>
         <module>netty-example-common</module>
+        <module>netty-example-client</module>
     </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
+    </dependencies>
 </project>

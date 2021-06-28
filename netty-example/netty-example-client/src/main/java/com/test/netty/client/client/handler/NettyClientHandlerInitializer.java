@@ -1,6 +1,4 @@
-package com.test.netty.server.server.handler;
-
-import java.util.concurrent.TimeUnit;
+package com.test.netty.client.client.handler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,32 +9,32 @@ import com.test.netty.common.dispatcher.MessageDispatcher;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
+import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 
 @Component
-public class NettyServerHandlerInitializer extends ChannelInitializer<Channel> {
-
+public class NettyClientHandlerInitializer extends ChannelInitializer<Channel> {
     /**
      * 心跳超时时间
      */
-    private static final Integer READ_TIMEOUT_SECONDS = 3 * 60;
+    private static final Integer READ_TIMEOUT_SECONDS = 60;
     @Autowired
     private MessageDispatcher messageDispatcher;
     @Autowired
-    private NettyServerHandler nettyServerHandler;
+    private NettyClientHandler nettyClientHandler;
 
     @Override
-    protected void initChannel(Channel channel) throws Exception {
-        channel.pipeline()
-                // 空闲检测
-                .addLast(new ReadTimeoutHandler(READ_TIMEOUT_SECONDS, TimeUnit.SECONDS))
+    protected void initChannel(Channel ch) throws Exception {
+        ch.pipeline()
+                // 客户端处理器
+                .addLast(new IdleStateHandler(READ_TIMEOUT_SECONDS, 0, 0))
+                .addLast(new ReadTimeoutHandler(3 * READ_TIMEOUT_SECONDS))
                 // 编码器
                 .addLast(new InvocationEncoder())
                 // 解码器
                 .addLast(new InvocationDecoder())
                 // 消息分发器
                 .addLast(messageDispatcher)
-                // 服务端处理器
-                .addLast(nettyServerHandler);
+                .addLast(nettyClientHandler);
     }
 }

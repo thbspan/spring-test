@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import com.test.netty.common.codec.Invocation;
+
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelId;
 import io.netty.util.AttributeKey;
@@ -36,9 +38,12 @@ public class NettyChannelManager {
 
     public void add(Channel channel) {
         channels.put(channel.id(), channel);
-        logger.info("[add][一个连接({})加入了]", channel.id());
+        logger.info("[一个连接({})加入了]", channel.id());
     }
 
+    /**
+     * 移除 channel
+     */
     public void remove(Channel channel) {
         // 移除 channels
         channels.remove(channel.id());
@@ -46,7 +51,7 @@ public class NettyChannelManager {
         if (channel.hasAttr(CHANNEL_ATTR_KEY_USER)) {
             userChannels.remove(channel.attr(CHANNEL_ATTR_KEY_USER).get());
         }
-        logger.info("[remove][一个连接({})离开了]", channel.id());
+        logger.info("[一个连接({})离开了]", channel.id());
     }
 
     /**
@@ -55,12 +60,28 @@ public class NettyChannelManager {
     public void addUser(Channel channel, String user) {
         Channel existChannel = channels.get(channel.id());
         if (existChannel == null) {
-            logger.error("[addUser][连接({}) 不存在]", channel.id());
+            logger.error("[连接({}) 不存在]", channel.id());
             return;
         }
         // 设置属性
         channel.attr(CHANNEL_ATTR_KEY_USER).set(user);
         // 添加到 userChannels
         userChannels.put(user, channel);
+    }
+
+    /**
+     * 向指定的用户发送消息
+     */
+    public void send(String user, Invocation invocation) {
+        Channel channel = userChannels.get(user);
+        if (channel == null) {
+            logger.error("指定用户({})连接不存在", user);
+            return;
+        }
+        if (!channel.isActive()) {
+            logger.error("指定用户({})连接({})未激活", user, channel.id());
+            return;
+        }
+        channel.writeAndFlush(invocation);
     }
 }
