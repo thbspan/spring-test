@@ -42,7 +42,8 @@ public class RestDemoController {
      * 如果包含请求参数，会将指定name的值放到 map中
      */
     @GetMapping(value = "/map")
-    public Object map(@RequestParam Map<String, Object> map) {
+    public Object map(@RequestParam Map<String, Object> map, String sessionId) {
+        LOGGER.info("sessionId = {}", sessionId);
         return map;
     }
 
