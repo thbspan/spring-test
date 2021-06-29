@@ -34,3 +34,12 @@ Content-Type: application/json
   "type": "CHAT_SEND_TO_ONE_REQUEST",
   "message": "{\"toUser\":\"userB\",\"msgId\":1,\"content\":\"hi~\"}"
 }
+
+### broadcast message
+POST http://localhost:8080/demo/mock
+Content-Type: application/json
+
+{
+  "type": "CHAT_SEND_TO_ALL_REQUEST",
+  "message": "{\"msgId\":1,\"content\":\"hi all~\"}"
+}

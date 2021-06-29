@@ -84,4 +84,15 @@ public class NettyChannelManager {
         }
         channel.writeAndFlush(invocation);
     }
+
+    public void sendAll(Invocation invocation) {
+        for (Channel channel : channels.values()) {
+            if (!channel.isActive()) {
+                logger.error("指定连接({})未激活", channel.id());
+                return;
+            }
+            // 发送消息
+            channel.writeAndFlush(invocation);
+        }
+    }
 }
