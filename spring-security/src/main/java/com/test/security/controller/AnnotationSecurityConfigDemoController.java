@@ -13,12 +13,12 @@ public class AnnotationSecurityConfigDemoController {
     @PermitAll
     @GetMapping("/echo")
     public String demo() {
-        return "示例返回";
+        return "echo example";
     }
 
     @GetMapping("/home")
     public String home() {
-        return "我是首页";
+        return "home";
     }
 
     /**
@@ -31,12 +31,12 @@ public class AnnotationSecurityConfigDemoController {
     @PreAuthorize("hasRole('admin')")
     @GetMapping("/admin")
     public String admin() {
-        return "我是管理员";
+        return "admin";
     }
 
     @PreAuthorize("hasRole('user')")
     @GetMapping("/normal")
     public String normal() {
-        return "我是普通用户";
+        return "normal";
     }
 }
