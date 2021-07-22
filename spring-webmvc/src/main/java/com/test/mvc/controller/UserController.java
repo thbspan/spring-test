@@ -6,6 +6,10 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.mvc.service.UserService;
+import com.test.mvc.vo.UserEntityModel;
 import com.test.mvc.vo.UserVO;
 
 @RestController
@@ -35,6 +40,13 @@ public class UserController {
     @GetMapping("/{id}")
     public UserVO get(@PathVariable("id") Integer id) {
         return userService.selectById(id);
+    }
+
+    @RequestMapping("/greeting")
+    public HttpEntity<UserEntityModel> greeting(@RequestParam Integer id) {
+        UserEntityModel userEntityModel = new UserEntityModel(userService.selectById(id));
+        userEntityModel.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserController.class).greeting(id)).withSelfRel());
+        return new ResponseEntity<>(userEntityModel, HttpStatus.OK);
     }
 
     @PostMapping
