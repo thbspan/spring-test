@@ -10,21 +10,21 @@ public class TestController {
 
     @GetMapping("/echo")
     public String demo() {
-        return "示例返回";
+        return "echo";
     }
 
     @GetMapping("/home")
     public String home() {
-        return "我是首页";
+        return "home";
     }
 
     @GetMapping("/admin")
     public String admin() {
-        return "我是管理员";
+        return "admin";
     }
 
     @GetMapping("/normal")
     public String normal() {
-        return "我是普通用户";
+        return "normal";
     }
 }
