@@ -43,8 +43,8 @@
         <java.version>1.8</java.version>
         <!--覆盖mysql版本-->
         <mysql.version>5.1.49</mysql.version>
-        <guava.version>30.1.1-jre</guava.version>
-        <fastjson.version>1.2.76</fastjson.version>
+        <guava.version>32.1.1-jre</guava.version>
+        <fastjson.version>1.2.83</fastjson.version>
     </properties>
 
     <dependencyManagement>

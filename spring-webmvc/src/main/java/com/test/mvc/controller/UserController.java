@@ -3,6 +3,8 @@ package com.test.mvc.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.HandlerMapping;
 
 import com.test.mvc.service.UserService;
 import com.test.mvc.vo.UserEntityModel;
@@ -40,6 +44,16 @@ public class UserController {
     @GetMapping("/{id}")
     public UserVO get(@PathVariable("id") Integer id) {
         return userService.selectById(id);
+    }
+
+    @GetMapping("/f/**")
+    public String testPathVariable(HttpServletRequest request) {
+        // Don't repeat a pattern
+        // @PathVariable 注解中不能包含特殊字符，比如 / 文件分隔符，这是一种解决版本
+        String pattern = (String)
+                request.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
+        return new AntPathMatcher().extractPathWithinPattern(pattern,
+                request.getServletPath());
     }
 
     @RequestMapping("/greeting")

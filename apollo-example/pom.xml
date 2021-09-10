@@ -11,9 +11,10 @@
 
     <artifactId>apollo-example</artifactId>
     <properties>
-        <apollo-client.version>1.7.0</apollo-client.version>
+        <apollo-client.version>2.1.0</apollo-client.version>
     </properties>
 
+    
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
