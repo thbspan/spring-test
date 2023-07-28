@@ -10,7 +10,7 @@ import com.test.prop.entity.MailInfo;
 import com.test.prop.entity.Person;
 
 @SpringBootTest(classes = {ConfigurationPropertiesApplication.class})// 指定启动类
-public class ConfigurationPropertiesApplicationTests {
+class ConfigurationPropertiesApplicationTests {
 
     @Autowired
     private MailInfo mailInfo;
@@ -19,7 +19,7 @@ public class ConfigurationPropertiesApplicationTests {
     @Autowired
     private AppProperties appProperties;
     @Test
-    public void testProp() {
+    void testProp() {
         Assertions.assertNotNull(mailInfo);
         System.out.println(mailInfo);
 
