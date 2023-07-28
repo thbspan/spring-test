@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 @SpringBootApplication
 public class ApolloExampleApplication {
+
     public static void main(String[] args) {
         SpringApplication.run(ApolloExampleApplication.class, args);
     }
@@ -26,8 +27,8 @@ class OrderPropertiesCommandLineRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        logger.info("payTimeoutSeconds:" + orderProperties.getPayTimeoutSeconds());
-        logger.info("createFrequencySeconds:" + orderProperties.getCreateFrequencySeconds());
+        logger.info("payTimeoutSeconds: {}", orderProperties.getPayTimeoutSeconds());
+        logger.info("createFrequencySeconds: {}", orderProperties.getCreateFrequencySeconds());
     }
 }
 
@@ -44,7 +45,7 @@ class ValueCommandLineRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        logger.info("payTimeoutSeconds:" + payTimeoutSeconds);
-        logger.info("createFrequencySeconds:" + createFrequencySeconds);
+        logger.info("payTimeoutSeconds: {}", payTimeoutSeconds);
+        logger.info("createFrequencySeconds: {}", createFrequencySeconds);
     }
 }
