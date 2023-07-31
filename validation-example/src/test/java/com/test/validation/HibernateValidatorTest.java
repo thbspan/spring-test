@@ -11,10 +11,10 @@ import org.junit.jupiter.api.Test;
 
 import com.test.validation.pojo.DemoUser;
 
-public class HibernateValidatorTest {
+class HibernateValidatorTest {
 
     @Test
-    public void testSPIValidationProvider() {
+    void testSPIValidationProvider() {
         Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
         DemoUser user = new DemoUser();
         DemoUser.Address address = new DemoUser.Address();
