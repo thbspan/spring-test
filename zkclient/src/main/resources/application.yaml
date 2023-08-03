@@ -1,7 +1,0 @@
-spring:
-  application:
-    name: zkclient-demo
-server:
-  port: ${randomOnce.value[20000,60000]}
-zk:
-  url: localhost:2181

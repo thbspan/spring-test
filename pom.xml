@@ -14,7 +14,6 @@
         <module>apollo-example</module>
         <module>spring-xml</module>
         <module>spring-annotation</module>
-        <module>zkclient</module>
         <module>spring-security</module>
         <module>spring-session-jedis</module>
         <module>rsocket-example</module>

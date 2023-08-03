@@ -9,7 +9,7 @@ public class DeferredResultResponse {
         FAILED(500, "失败"),
         SUCCESS(200, "成功");
 
-        private int code;
+        private final int code;
         private final String desc;
 
         Msg(int code, String desc) {
