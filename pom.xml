@@ -23,8 +23,6 @@
         <module>sentinel-example</module>
         <module>netty-example</module>
         <module>validation-example</module>
-        <module>mybatis-flex</module>
-        <module>mybatis-plus</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
