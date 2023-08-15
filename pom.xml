@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>long-polling</module>
-        <module>servlet3</module>
+        <module>servlet</module>
         <module>nacos-spring-boot-example</module>
         <module>spring-webmvc</module>
         <module>spring-jdbc</module>

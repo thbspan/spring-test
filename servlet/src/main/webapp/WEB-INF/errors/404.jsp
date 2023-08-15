@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
     <title>404 page not found</title>
 </head>
