@@ -38,7 +38,7 @@
             <artifactId>jstl</artifactId>
         </dependency>
         <!-- jsp引擎依赖 -->
-        <!-- idea中运行时需要设置 Working directory %MODULE_WORKING_DIR% -->
+        <!-- idea中运行时需要设置 Working directory $ContentRoot$或者%MODULE_WORKING_DIR% -->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
@@ -46,6 +46,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-hateoas</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
     </dependencies>
 
