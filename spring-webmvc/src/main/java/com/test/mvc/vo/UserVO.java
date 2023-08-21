@@ -1,5 +1,9 @@
 package com.test.mvc.vo;
 
+import com.alibaba.excel.EasyExcel;
+
+import java.util.HashMap;
+
 public class UserVO {
     private int id;
     private String userName;
@@ -31,6 +35,8 @@ public class UserVO {
 
     @Override
     public String toString() {
+        EasyExcel.write("df").withTemplate("fdd").sheet().doFill(new HashMap<>());
+
         return "UserVO{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
