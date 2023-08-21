@@ -18,6 +18,7 @@ public class GlobalResponseBodyHandler implements ResponseBodyAdvice<Object> {
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
         Type type = returnType.getGenericParameterType();
+        // type是 CommonResult.class的父类
         return type instanceof Class && (((Class<?>) type).isAssignableFrom(CommonResult.class));
     }
 
