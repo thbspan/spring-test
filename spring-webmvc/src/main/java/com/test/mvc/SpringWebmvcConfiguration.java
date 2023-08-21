@@ -1,6 +1,7 @@
 package com.test.mvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.test.mvc.argument.converter.CsvHttpMessageConverter;
 import com.test.mvc.argument.resolver.ArgDemoResolver;
 import com.test.mvc.converter.yaml.MappingJackson2YamlHttpMessageConverter;
 import com.test.mvc.interceptor.DemoInterceptor;
@@ -65,6 +66,11 @@ public class SpringWebmvcConfiguration implements WebMvcConfigurer {
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         resolvers.add(new ArgDemoResolver());
+    }
+
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        converters.add(new CsvHttpMessageConverter());
     }
 
     public static class JsonViewResolver implements ViewResolver {
