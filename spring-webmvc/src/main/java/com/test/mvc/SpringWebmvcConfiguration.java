@@ -1,6 +1,7 @@
 package com.test.mvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.test.mvc.argument.resolver.ArgDemoResolver;
 import com.test.mvc.converter.yaml.MappingJackson2YamlHttpMessageConverter;
 import com.test.mvc.interceptor.DemoInterceptor;
 import com.test.mvc.view.resolver.EasyExcelViewResolver;
@@ -8,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
@@ -58,6 +60,11 @@ public class SpringWebmvcConfiguration implements WebMvcConfigurer {
         configurer.mediaType("xlsx", new MediaType("application", "vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
         configurer.mediaType("xls", new MediaType("application", "vnd.ms-excel"));
         configurer.favorPathExtension(true);
+    }
+
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+        resolvers.add(new ArgDemoResolver());
     }
 
     public static class JsonViewResolver implements ViewResolver {
