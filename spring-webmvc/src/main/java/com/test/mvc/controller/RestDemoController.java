@@ -25,6 +25,7 @@ public class RestDemoController {
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
+        // 注册 string 到 Map的转换器
         binder.registerCustomEditor(Map.class, new CustomMapPropertyEditor());
     }
 
