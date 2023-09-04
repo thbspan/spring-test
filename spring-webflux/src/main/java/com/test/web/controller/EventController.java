@@ -1,7 +1,6 @@
 package com.test.web.controller;
 
-import javax.annotation.Resource;
-
+import jakarta.annotation.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +25,7 @@ public class EventController {
         return eventService.insert(events);
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_NDJSON_VALUE)
     public Flux<Event> getEvents() {
         return eventService.listAll();
     }

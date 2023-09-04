@@ -28,15 +28,16 @@
 
         <!-- 添加servlet依赖模块 -->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <!-- 添加jstl标签库依赖模块 -->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
         </dependency>
+
         <!-- jsp引擎依赖 -->
         <!-- idea中运行时需要设置 Working directory $ContentRoot$或者%MODULE_WORKING_DIR% -->
         <dependency>

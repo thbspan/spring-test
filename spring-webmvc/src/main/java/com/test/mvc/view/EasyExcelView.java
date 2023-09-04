@@ -1,11 +1,12 @@
 package com.test.mvc.view;
 
 import com.alibaba.excel.EasyExcel;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.view.AbstractView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.Map;
 
@@ -38,7 +39,7 @@ public class EasyExcelView extends AbstractView {
         // Set the content type.
         response.setContentType(getContentType());
 
-        String fileName = URLEncoder.encode("测试", "UTF-8").replaceAll("\\+", "%20");
+        String fileName = URLEncoder.encode("测试", StandardCharsets.UTF_8).replaceAll("\\+", "%20");
         response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
         EasyExcel.write(response.getOutputStream())
                 .withTemplate(Thread.currentThread().getContextClassLoader().getResourceAsStream(templatePath))

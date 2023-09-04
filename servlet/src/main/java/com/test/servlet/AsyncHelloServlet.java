@@ -1,21 +1,22 @@
 package com.test.servlet;
 
-import java.io.IOException;
-
-import javax.servlet.AsyncContext;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.test.service.LongRunningProcess;
+import jakarta.servlet.AsyncContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.io.Serial;
 
 @WebServlet(value = "/async/hello", asyncSupported = true)
 public class AsyncHelloServlet extends HttpServlet {
-	private static final long serialVersionUID = -4798532990398538222L;
+    @Serial
+    private static final long serialVersionUID = -4798532990398538222L;
 
-	@Override
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         AsyncContext asyncContext = request.startAsync();
 

@@ -1,13 +1,14 @@
 package com.test.servlet;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.io.PrintWriter;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.io.Serial;
 
 /**
  * servlet url 路径匹配
@@ -19,7 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 //@WebServlet("/path") // URL /path
 @WebServlet("/path/") // URL /path/
 public class PathMatchServlet extends HttpServlet {
-	private static final long serialVersionUID = -6203805520008631658L;
+	@Serial
+    private static final long serialVersionUID = -6203805520008631658L;
 
 	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

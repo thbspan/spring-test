@@ -6,6 +6,7 @@ import com.test.mvc.argument.resolver.ArgDemoResolver;
 import com.test.mvc.converter.yaml.MappingJackson2YamlHttpMessageConverter;
 import com.test.mvc.interceptor.DemoInterceptor;
 import com.test.mvc.view.resolver.EasyExcelViewResolver;
+import com.test.mvc.web.filter.ResponseStatusLoggingInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -26,13 +27,19 @@ import java.util.Locale;
 @Configuration
 public class SpringWebmvcConfiguration implements WebMvcConfigurer {
 
+    @Bean
+    public ResponseStatusLoggingInterceptor responseStatusLoggingInterceptor() {
+        return new ResponseStatusLoggingInterceptor();
+    }
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         // 配置拦截器
         InterceptorRegistration registration = registry.addInterceptor(new DemoInterceptor());
         // 所有路径都被拦截
         registration.addPathPatterns("/**");
-
+        // 也可以不配置拦截路径，默认拦截所有的请求
+        registry.addInterceptor(responseStatusLoggingInterceptor());
     }
 
     @Bean

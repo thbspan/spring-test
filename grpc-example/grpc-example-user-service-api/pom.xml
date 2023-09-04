@@ -12,6 +12,10 @@
     <artifactId>grpc-example-user-service-api</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+        </dependency>
         <!-- protobuf 序列化库 -->
         <dependency>
             <groupId>io.grpc</groupId>

@@ -4,8 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
-
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.test.entity.User;

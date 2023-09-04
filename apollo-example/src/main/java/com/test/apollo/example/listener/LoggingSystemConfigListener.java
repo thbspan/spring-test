@@ -2,8 +2,7 @@ package com.test.apollo.example.listener;
 
 import java.util.Set;
 
-import javax.annotation.Resource;
-
+import jakarta.annotation.Resource;
 import org.springframework.boot.logging.LogLevel;
 import org.springframework.boot.logging.LoggingSystem;
 import org.springframework.stereotype.Component;
