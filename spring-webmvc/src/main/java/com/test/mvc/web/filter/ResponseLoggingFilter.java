@@ -29,8 +29,9 @@ public class ResponseLoggingFilter implements Filter {
         // Log response status code and headers
         int statusCode = responseWrapper.getStatus();
         LOGGER.info("Response Status Code: {}", statusCode);
+        LOGGER.info("Response Content Type: {}", responseWrapper.getContentType());
         responseWrapper.getHeaderNames().forEach(headerName -> {
-            LOGGER.info("Response header name={}, value={}", headerName, responseWrapper.getHeader(headerName));
+            LOGGER.info("Response header name: {}, value: {}", headerName, responseWrapper.getHeader(headerName));
         });
 
         // Log response body
