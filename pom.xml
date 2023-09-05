@@ -17,7 +17,6 @@
         <module>spring-security</module>
         <module>spring-session-jedis</module>
         <module>rsocket-example</module>
-        <module>rsocket-rpc-example</module>
         <module>spring-webflux</module>
         <module>sentinel-example</module>
         <module>netty-example</module>
