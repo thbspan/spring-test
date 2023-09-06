@@ -22,6 +22,7 @@
         <module>netty-example</module>
         <module>validation-example</module>
         <module>spring-boot</module>
+        <module>spring-data</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
