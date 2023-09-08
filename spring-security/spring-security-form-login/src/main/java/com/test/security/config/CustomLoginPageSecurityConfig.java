@@ -21,6 +21,22 @@ public class CustomLoginPageSecurityConfig extends SecurityConfig {
                 .and()
                 .formLogin()
                 .loginPage("/login.html")
+                .loginProcessingUrl("/custom-login")
+                .usernameParameter("name")
+                .passwordParameter("pass")
+                .defaultSuccessUrl("/hello")
+                //.successForwardUrl("/hello")
+                .permitAll()
+                .and()
+                .logout()
+                // 默认的注销URL，GET请求
+                .logoutUrl("/logout")
+                // 或者通过下面的方法设置注销URL和请求方式
+                //.logoutRequestMatcher(new AntPathRequestMatcher("/logout","POST"))
+                .logoutSuccessUrl("/index")
+                .deleteCookies()
+                .clearAuthentication(true)
+                .invalidateHttpSession(true)
                 .permitAll()
                 .and()
                 .csrf().disable();
