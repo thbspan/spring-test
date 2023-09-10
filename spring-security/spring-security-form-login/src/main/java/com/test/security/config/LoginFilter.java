@@ -23,8 +23,10 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        if (request.getContentType().equals(MediaType.APPLICATION_JSON_VALUE)
-                || request.getContentType().equals(MediaType.APPLICATION_JSON_UTF8_VALUE)) {
+        String contentType = request.getContentType();
+
+        if (MediaType.APPLICATION_JSON_VALUE.equals(contentType)
+                || MediaType.APPLICATION_JSON_UTF8_VALUE.equals(contentType)) {
             Map<String, String> loginData = new HashMap<>();
             try {
                 loginData = objectMapper.readValue(request.getInputStream(), new TypeReference<Map<String, String>>() {
