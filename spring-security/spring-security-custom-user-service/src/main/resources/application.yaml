@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: spring-security-custom-user-service
+  datasource:
+    url: jdbc:mysql:///security_mybatis?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: my-secret-pw
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
