@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 public class User implements UserDetails, Serializable {
     private static final long serialVersionUID = 3256295105554045157L;
@@ -101,5 +102,24 @@ public class User implements UserDetails, Serializable {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    /**
+     * 用户判断自定义的用户是否相等
+     *
+     * @param o 其他的对象
+     * @return 是否相等
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return Objects.equals(username, user.username);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username);
     }
 }
