@@ -1,23 +1,18 @@
 package com.test.security.config;
 
-import com.test.security.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 @Configuration
-public class CustomUserServiceSecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Resource
-    private UserService userService;
+public class CustomUserServiceSecurityConfig {
 
     @Resource
     private DataSource dataSource;
@@ -34,17 +29,9 @@ public class CustomUserServiceSecurityConfig extends WebSecurityConfigurerAdapte
         return new BCryptPasswordEncoder();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService)
-                .passwordEncoder(passwordEncoder());
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .anyRequest().authenticated()
-                .and()
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.authorizeRequests(authorizeRequests -> authorizeRequests.anyRequest().authenticated())
                 .formLogin()
                 .and()
                 // 页面上会战胜是否自动登录复选框
@@ -53,5 +40,6 @@ public class CustomUserServiceSecurityConfig extends WebSecurityConfigurerAdapte
                 .rememberMe()
                 // 配置令牌持久化
                 .tokenRepository(jdbcTokenRepository());
+        return http.build();
     }
 }

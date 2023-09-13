@@ -9,19 +9,20 @@ import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 
 @Configuration
-public class AuthConfig extends WebSecurityConfigurerAdapter {
+public class AuthConfig {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -39,15 +40,13 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
         return myAuthenticationProvider;
     }
 
-    @Override
     @Bean
-    protected AuthenticationManager authenticationManager() throws Exception {
+    public AuthenticationManager authenticationManager() {
         return new ProviderManager(Collections.singletonList(myAuthenticationProvider()));
     }
 
     @Bean
-    @Override
-    protected UserDetailsService userDetailsService() {
+    public UserDetailsService userDetailsService() {
         PasswordEncoder passwordEncoder = passwordEncoder();
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(User.withUsername("java")
@@ -57,33 +56,31 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
         return manager;
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers(VerifyCodeController.PATH_VC).permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .successHandler((req, resp, auth) -> {
-                    resp.setContentType(MediaType.APPLICATION_JSON_VALUE);
-                    resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
-                    PrintWriter out = resp.getWriter();
-                    out.write(objectMapper.writeValueAsString(auth.getPrincipal()));
-                    out.flush();
-                    out.close();
-                })
-                .failureHandler((req, resp, e) -> {
-                    resp.setContentType(MediaType.APPLICATION_JSON_VALUE);
-                    resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
-                    PrintWriter out = resp.getWriter();
-                    out.write(objectMapper.writeValueAsString(e.getMessage()));
-                    out.flush();
-                    out.close();
-                })
-                .permitAll()
-                .and()
-                .csrf().disable()
-                // maximumSessions 表示配置最大会话数为 1，这样后面的登录就会自动踢掉前面的登录
-                .sessionManagement().maximumSessions(1);
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.authorizeRequests(auth -> auth.antMatchers(VerifyCodeController.PATH_VC).permitAll()
+                        .anyRequest().authenticated())
+                .formLogin(form -> form.successHandler((req, resp, auth) -> {
+                                    resp.setContentType(MediaType.APPLICATION_JSON_VALUE);
+                                    resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
+                                    PrintWriter out = resp.getWriter();
+                                    out.write(objectMapper.writeValueAsString(auth.getPrincipal()));
+                                    out.flush();
+                                    out.close();
+                                }).failureHandler((req, resp, e) -> {
+                                    resp.setContentType(MediaType.APPLICATION_JSON_VALUE);
+                                    resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
+                                    PrintWriter out = resp.getWriter();
+                                    out.write(objectMapper.writeValueAsString(e.getMessage()));
+                                    out.flush();
+                                    out.close();
+                                })
+                                .permitAll()
+                )
+                .csrf(AbstractHttpConfigurer::disable).sessionManagement(sessionManagement -> {
+                    // maximumSessions 表示配置最大会话数为 1，这样后面的登录就会自动踢掉前面的登录
+                    sessionManagement.maximumSessions(1);
+                });
+        return http.build();
     }
 }
