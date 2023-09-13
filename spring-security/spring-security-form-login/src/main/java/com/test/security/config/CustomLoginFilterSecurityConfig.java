@@ -6,11 +6,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AccountExpiredException;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.CredentialsExpiredException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -28,7 +29,12 @@ import java.io.PrintWriter;
 public class CustomLoginFilterSecurityConfig extends CustomLoginPageSecurityConfig {
 
     @Bean
-    LoginFilter loginFilter() throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
+    LoginFilter loginFilter(AuthenticationManager authenticationManager) {
         LoginFilter loginFilter = new LoginFilter();
         loginFilter.setAuthenticationSuccessHandler(new AuthenticationSuccessHandler() {
 
@@ -69,14 +75,13 @@ public class CustomLoginFilterSecurityConfig extends CustomLoginPageSecurityConf
                 out.close();
             }
         });
-        loginFilter.setAuthenticationManager(authenticationManagerBean());
+        loginFilter.setAuthenticationManager(authenticationManager);
         loginFilter.setFilterProcessesUrl("/doLogin");
         return loginFilter;
     }
 
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-        super.configure(http);
-        http.addFilterAt(loginFilter(), UsernamePasswordAuthenticationFilter.class);
+    @Bean
+    public HttpSecurityCustomer httpSecurityCustomer(LoginFilter loginFilter) {
+        return httpSecurity -> httpSecurity.addFilterAt(loginFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }

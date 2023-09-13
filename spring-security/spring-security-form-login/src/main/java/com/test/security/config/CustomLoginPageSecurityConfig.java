@@ -1,11 +1,15 @@
 package com.test.security.config;
 
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.web.SecurityFilterChain;
+
+import java.util.List;
 
 @Profile({"custom-login"})
 @Configuration
@@ -13,11 +17,13 @@ public class CustomLoginPageSecurityConfig extends SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.ignoring().antMatchers("/js/**", "/css/**", "/images/**");
+        return web -> web.ignoring()
+                .antMatchers("/js/**", "/css/**", "/images/**");
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http,
+                                           ObjectProvider<List<HttpSecurityCustomer>> httpSecurityCustomerObjectProvider) throws Exception {
         http.authorizeRequests(auth -> auth.anyRequest().authenticated())
                 .formLogin(form -> form.loginPage("/login.html")
                         .loginProcessingUrl("/custom-login")
@@ -34,6 +40,14 @@ public class CustomLoginPageSecurityConfig extends SecurityConfig {
                         .clearAuthentication(true)
                         .invalidateHttpSession(true)
                         .permitAll()
-                ).csrf(AbstractHttpConfigurer::disable);
+                )
+                .csrf(AbstractHttpConfigurer::disable);
+
+        httpSecurityCustomerObjectProvider.ifAvailable(list -> {
+            for (HttpSecurityCustomer httpSecurityCustomer : list) {
+                httpSecurityCustomer.accept(http);
+            }
+        });
+        return http.build();
     }
 }
