@@ -3,8 +3,8 @@ package com.test.security.config;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Profile;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 @Configuration(proxyBeanMethods = false)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig {
 
     @Resource
     private DataSource dataSource;
@@ -24,9 +24,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private PasswordEncoder passwordEncoder;
 
-    @Override
+    // 使用lazy设置等数据库初始化完成后再执行此bean的初始化
+    @Lazy
     @Bean
-    protected UserDetailsService userDetailsService() {
+    public UserDetailsService userDetailsService() {
         JdbcUserDetailsManager manager = new JdbcUserDetailsManager();
         manager.setDataSource(dataSource);
         if (!manager.userExists("boy")) {
@@ -42,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return manager;
     }
 
+    @Configuration(proxyBeanMethods = false)
     @Profile("default")
     static class Encode {
 
@@ -54,6 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
+    @Configuration(proxyBeanMethods = false)
     @Profile("mysql")
     static class MysqlEncode {
 

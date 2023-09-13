@@ -14,6 +14,8 @@ import java.io.IOException;
 // 参考 https://blog.csdn.net/T_Y_F_/article/details/131148014
 @MultipartConfig(fileSizeThreshold = 4 * 1024 * 1024, maxFileSize = 40 * 1024 * 1024, maxRequestSize = 50 * 1024 * 1024)
 public class UploadFileServlet extends HttpServlet {
+    private static final long serialVersionUID = -4862150143402819988L;
+
     private final String tmpDir = System.getProperty("java.io.tmpdir");
 
     @Override
