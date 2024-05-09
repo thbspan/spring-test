@@ -23,6 +23,7 @@
         <module>validation-example</module>
         <module>spring-boot</module>
         <module>spring-data</module>
+        <module>spring-amqp</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
