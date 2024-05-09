@@ -15,10 +15,12 @@ public class RabbitMQController {
 
     /**
      * 发送消息
-     *
      */
     @PostMapping("/send-msg")
-    public String sendMsg(@RequestParam(name = "msg") String msg) throws Exception {
-        return rabbitMQService.sendMsg(msg);
+    public String sendMsg(@RequestParam(name = "msg") String msg, @RequestParam(name = "exchange", required = false, defaultValue = "direct") String exchange) throws Exception {
+        return switch (exchange) {
+            case "fanout" -> rabbitMQService.sendMsgByFanoutExchange(msg);
+            default -> rabbitMQService.sendMsg(msg);
+        };
     }
 }
