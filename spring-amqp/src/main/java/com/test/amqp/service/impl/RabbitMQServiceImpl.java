@@ -38,6 +38,14 @@ public class RabbitMQServiceImpl implements RabbitMQService {
         return "ok";
     }
 
+    @Override
+    public String sendMsgByTopicExchange(String msg, String routingKey) throws Exception {
+        Map<String, Object> message = getMessage(msg);
+        //发送消息
+        rabbitTemplate.convertAndSend(RabbitMQConfig.TOPIC_EXCHANGE_DEMO_NAME, routingKey, message);
+        return "ok";
+    }
+
     //组装消息体
     private Map<String, Object> getMessage(String msg) {
         String msgId = UUID.randomUUID().toString().replace("-", "").substring(0, 32);

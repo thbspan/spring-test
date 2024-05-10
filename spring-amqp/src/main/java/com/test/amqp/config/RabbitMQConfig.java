@@ -4,9 +4,9 @@ package com.test.amqp.config;
 public class RabbitMQConfig {
 
     /**
-     * 队列主题名称
+     * 队列主题名称 direct
      */
-    public static final String RABBITMQ_DEMO_TOPIC = "rabbitmq-demo-topic";
+    public static final String RABBITMQ_DEMO_TOPIC = "rabbitmq-demo-direct";
 
     /**
      * direct 交换机名称
@@ -32,4 +32,25 @@ public class RabbitMQConfig {
      * RabbitMQ的FANOUT_EXCHANG交换机类型的名称
      */
     public static final String FANOUT_EXCHANGE_DEMO_NAME = "rabbitmq-demo-fanout-exchange";
+
+    // ---- topic ----
+    /**
+     * RabbitMQ的TOPIC_EXCHANGE交换机名称
+     */
+    public static final String TOPIC_EXCHANGE_DEMO_NAME = "rabbitmq-demo-topic-exchange";
+
+    /**
+     * RabbitMQ的TOPIC_EXCHANGE交换机的队列A的名称
+     */
+    public static final String TOPIC_EXCHANGE_QUEUE_A = "rabbitmq-demo-topic-a";
+
+    /**
+     * RabbitMQ的TOPIC_EXCHANGE交换机的队列B的名称
+     */
+    public static final String TOPIC_EXCHANGE_QUEUE_B = "rabbitmq-demo-topic-b";
+
+    /**
+     * RabbitMQ的TOPIC_EXCHANGE交换机的队列C的名称
+     */
+    public static final String TOPIC_EXCHANGE_QUEUE_C = "rabbitmq-demo-topic-c";
 }
