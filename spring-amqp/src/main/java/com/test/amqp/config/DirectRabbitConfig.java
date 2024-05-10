@@ -6,6 +6,9 @@ import org.springframework.amqp.support.converter.SimpleMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Configuration
 public class DirectRabbitConfig {
 
@@ -124,5 +127,44 @@ public class DirectRabbitConfig {
         return BindingBuilder.bind(topicExchangeQueueA())
                 .to(rabbitmqDemoTopicExchange())
                 .with("rabbit.#");
+    }
+
+
+    // ------ headers 模式 ------
+    @Bean
+    public Queue headersQueueA() {
+        return new Queue(RabbitMQConfig.HEADERS_EXCHANGE_QUEUE_A, true, false, false);
+    }
+
+    @Bean
+    public Queue headersQueueB() {
+        return new Queue(RabbitMQConfig.HEADERS_EXCHANGE_QUEUE_B, true, false, false);
+    }
+
+    @Bean
+    public HeadersExchange rabbitmqDemoHeadersExchange() {
+        return new HeadersExchange(RabbitMQConfig.HEADERS_EXCHANGE_DEMO_NAME, true, false);
+    }
+
+    @Bean
+    public Binding bindHeadersA() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("key_one", "java");
+        map.put("key_two", "rabbit");
+        //全匹配
+        return BindingBuilder.bind(headersQueueA())
+                .to(rabbitmqDemoHeadersExchange())
+                .whereAll(map).match();
+    }
+
+    @Bean
+    public Binding bindHeadersB() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("headers_a", "s");
+        map.put("headers_b", "p");
+        //部分匹配
+        return BindingBuilder.bind(headersQueueB())
+                .to(rabbitmqDemoHeadersExchange())
+                .whereAny(map).match();
     }
 }

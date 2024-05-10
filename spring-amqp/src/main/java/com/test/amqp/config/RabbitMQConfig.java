@@ -53,4 +53,20 @@ public class RabbitMQConfig {
      * RabbitMQ的TOPIC_EXCHANGE交换机的队列C的名称
      */
     public static final String TOPIC_EXCHANGE_QUEUE_C = "rabbitmq-demo-topic-c";
+
+    // ---- header ----
+    /**
+     * HEADERS_EXCHANGE交换机名称
+     */
+    public static final String HEADERS_EXCHANGE_DEMO_NAME = "rabbitmq-demo-headers-exchange";
+
+    /**
+     * RabbitMQ的HEADERS_EXCHANGE交换机的队列A的名称
+     */
+    public static final String HEADERS_EXCHANGE_QUEUE_A = "rabbitmq-demo-headers-a";
+
+    /**
+     * RabbitMQ的HEADERS_EXCHANGE交换机的队列B的名称
+     */
+    public static final String HEADERS_EXCHANGE_QUEUE_B = "rabbitmq-demo-headers-b";
 }

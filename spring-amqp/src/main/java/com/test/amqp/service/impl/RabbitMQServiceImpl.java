@@ -3,6 +3,9 @@ package com.test.amqp.service.impl;
 import com.test.amqp.config.RabbitMQConfig;
 import com.test.amqp.service.RabbitMQService;
 import jakarta.annotation.Resource;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageDeliveryMode;
+import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +46,19 @@ public class RabbitMQServiceImpl implements RabbitMQService {
         Map<String, Object> message = getMessage(msg);
         //发送消息
         rabbitTemplate.convertAndSend(RabbitMQConfig.TOPIC_EXCHANGE_DEMO_NAME, routingKey, message);
+        return "ok";
+    }
+
+    @Override
+    public String sendMsgByHeadersExchange(String msg, Map<String, Object> headers) throws Exception {
+        MessageProperties messageProperties = new MessageProperties();
+        //消息持久化
+        messageProperties.setDeliveryMode(MessageDeliveryMode.PERSISTENT);
+        messageProperties.setContentType("UTF-8");
+        //添加消息
+        messageProperties.getHeaders().putAll(headers);
+        Message message = new Message(msg.getBytes(), messageProperties);
+        rabbitTemplate.convertAndSend(RabbitMQConfig.HEADERS_EXCHANGE_DEMO_NAME, null, message);
         return "ok";
     }
 
