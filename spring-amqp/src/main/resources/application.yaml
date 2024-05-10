@@ -9,3 +9,7 @@ spring:
     listener:
       simple:
         concurrency: 6
+    template:
+      mandatory: true
+    publisher-returns: true # 设置为true时。当消息匹配到Queue并且失败时，会通过回调returnedMessage()方法返回消息
+    publisher-confirm-type: CORRELATED # 发布消息成功到交换器后会触发回调方法
