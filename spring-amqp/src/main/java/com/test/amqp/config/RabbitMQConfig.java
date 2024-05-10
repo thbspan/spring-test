@@ -21,15 +21,15 @@ public class RabbitMQConfig {
     /**
      * RabbitMQ的FANOUT_EXCHANG交换机类型的队列 A 的名称
      */
-    public static final String FANOUT_EXCHANGE_QUEUE_TOPIC_A = "fanout.A";
+    public static final String FANOUT_EXCHANGE_QUEUE_TOPIC_A = "rabbitmq-demo-fanout-a";
 
     /**
      * RabbitMQ的FANOUT_EXCHANG交换机类型的队列 B 的名称
      */
-    public static final String FANOUT_EXCHANGE_QUEUE_TOPIC_B = "fanout.B";
+    public static final String FANOUT_EXCHANGE_QUEUE_TOPIC_B = "rabbitmq-demo-fanout-b";
 
     /**
      * RabbitMQ的FANOUT_EXCHANG交换机类型的名称
      */
-    public static final String FANOUT_EXCHANGE_DEMO_NAME = "fanout.exchange.demo.name";
+    public static final String FANOUT_EXCHANGE_DEMO_NAME = "rabbitmq-demo-fanout-exchange";
 }
