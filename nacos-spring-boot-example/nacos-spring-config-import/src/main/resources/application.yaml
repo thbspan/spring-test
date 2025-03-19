@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: nacos-config-import-example
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        refresh-enabled: true
+        file-extension: properties
+        group: DEFAULT_GROUP
+        name: ${spring.application.name}
+        namespace: public
+  config:
+    import:
+      - optional:nacos:test.properties?group=test
