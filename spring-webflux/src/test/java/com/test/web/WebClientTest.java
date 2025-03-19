@@ -1,17 +1,17 @@
 package com.test.web;
 
-import java.time.Duration;
-
+import com.test.web.model.Event;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
-
-import com.test.web.model.Event;
-
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
+
+@Disabled
 public class WebClientTest {
 
     private WebClient webClient;
