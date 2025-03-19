@@ -54,6 +54,8 @@
         <springframework.version>5.3.39</springframework.version>
         <spring-security.version>5.8.16</spring-security.version>
         <commons-io.version>2.18.0</commons-io.version>
+        <json-path.version>2.9.0</json-path.version>
+        <xmlunit2.version>2.10.0</xmlunit2.version>
     </properties>
 
     <dependencyManagement>

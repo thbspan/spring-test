@@ -17,6 +17,7 @@
     </modules>
     <properties>
         <hystrix.version>1.5.18</hystrix.version>
-        <spring.cloud.version>Hoxton.SR11</spring.cloud.version>
+        <spring.cloud.version>Hoxton.SR12</spring.cloud.version>
+        <spring-cloud-netflix.version>2.2.10.RELEASE</spring-cloud-netflix.version>
     </properties>
 </project>
