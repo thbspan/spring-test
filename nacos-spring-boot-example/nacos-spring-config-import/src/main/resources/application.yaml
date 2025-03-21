@@ -13,4 +13,5 @@ spring:
   config:
     import:
       - optional:config.yaml
+      - optional:nacos:ok.properties?group=test
       - optional:nacos:test.properties?group=test
