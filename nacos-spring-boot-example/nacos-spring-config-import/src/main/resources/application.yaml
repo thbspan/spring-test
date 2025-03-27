@@ -10,9 +10,13 @@ spring:
         group: DEFAULT_GROUP
         name: ${spring.application.name}
         namespace: public
+        preference: remote
+  profiles:
+    active: dev
   config:
     import:
-      - optional:nacos:test.properties?group=test
+      - optional:nacos:test.properties?group=test&preference=remote
       # higher priority
-      - optional:nacos:ok.properties?group=test
+      - optional:nacos:ok.properties?group=test&preference=remote
+      # lower priority than test.properties, because is not profile specific, but config-dev.yaml is profile specific, so it has higher priority
       - optional:config.yaml
