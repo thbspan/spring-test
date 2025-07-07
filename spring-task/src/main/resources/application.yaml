@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: spring-boot-task-demo
+  task:
+    scheduling:
+      pool:
+        size: 10
